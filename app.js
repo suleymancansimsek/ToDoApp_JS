@@ -18,15 +18,18 @@ input.addEventListener('keyup', () => {
 addBtn.addEventListener('click', () => {
 
     if(input.value.trim() != 0){
-        let newItem = document.createElement('div');
+        var newItem = document.createElement('div');
         newItem.classList.add('item');
         newItem.innerHTML = `            
-        <p> ${input.value}</p>
-        <div class="item-btn">
-            <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-            <i class="fa-solid fa-rectangle-xmark"></i>
-
-        </div>
+        <div class="content">
+        <input type="text" class="edit-item" value="${input.value}" readonly>
+    </div>
+    
+    <div class="item-btn">
+        <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+        <i class="fa-solid fa-check"></i>
+        <i class="fa-solid fa-rectangle-xmark"></i>
+    </div>
         `
         tasks.appendChild(newItem);
         input.value = '';
@@ -46,7 +49,22 @@ tasks.addEventListener('click', (e) => {
 //mark item as completed
 
 tasks.addEventListener('click', (e) => {
-    if(e.target.classList.contains('fa-pen-to-square')){
+    if(e.target.classList.contains('fa-check')){
         e.target.parentElement.parentElement.classList.toggle('completed');
+    }
+})
+
+tasks.addEventListener('click', (e) => {
+    var parent = e.target.parentElement.parentElement;
+    console.log(parent);
+    var message = parent.querySelector('input');
+
+    if(e.target.classList.contains('fa-pen-to-square')){
+
+        console.log(message);
+
+        message.removeAttribute('readonly');
+    }else{
+        message.setAttribute('readonly','readonly');
     }
 })

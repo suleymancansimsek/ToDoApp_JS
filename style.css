@@ -88,14 +88,22 @@ body{
     gap: 10px;
 }
 
+.item .content .edit-item{
+    color: rgb(255, 0, 0);
+}
+
+.item .content .edit-item:not(:read-only){
+    color: rgb(0, 255, 0);
+    
+}
+
 .item-btn i{
     color: rgb(121, 27, 245);
     font-size: 18px;
     cursor: pointer;
 }
 
-.item.completed p{
+.item.completed input{
     text-decoration: line-through;
-    color: rgba(85, 85, 85, 0.521);
-
+    -webkit-text-fill-color: #ccc;
 }
