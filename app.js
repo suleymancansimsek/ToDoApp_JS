@@ -26,10 +26,10 @@ addBtn.addEventListener('click', () => {
     </div>
     
     <div class="item-btn">
-        <i class="fa-sharp fa-solid fa-pen-to-square"></i>
-        <i class="fa-solid fa-check"></i>
-        <i class="fa-solid fa-rectangle-xmark"></i>
-    </div>
+    <button class="editBtnClass" id="editBtn">Edit</button>
+    <i class="fa-solid fa-check"></i>
+    <i class="fa-solid fa-rectangle-xmark"></i>
+</div>
         `
         tasks.appendChild(newItem);
         input.value = '';
@@ -54,17 +54,47 @@ tasks.addEventListener('click', (e) => {
     }
 })
 
+
+
 tasks.addEventListener('click', (e) => {
+
+    
     var parent = e.target.parentElement.parentElement;
-    console.log(parent);
+    var message = parent.querySelector('input');
+
+
+    if(e.target.classList.contains('editBtnClass')){
+        console.log("editBtn Works");
+        if(editBtn.innerText.toLowerCase() == 'edit'){ 
+            message.removeAttribute('readonly');
+            message.focus();
+            editBtn.innerText = "Save";
+        }else{
+            message.setAttribute('readonly','readonly');
+            editBtn.innerText = "Edit";
+        }
+    }else{
+        console.log("error");
+    }
+
+
+});
+
+/*
+tasks.addEventListener('click', (e) => {
+    
+    console.log(editBtn);
+    var parent = e.target.parentElement.parentElement;
+   // console.log(parent);
     var message = parent.querySelector('input');
 
     if(e.target.classList.contains('fa-pen-to-square')){
 
-        console.log(message);
+       // console.log(message);
 
         message.removeAttribute('readonly');
     }else{
         message.setAttribute('readonly','readonly');
     }
 })
+*/
